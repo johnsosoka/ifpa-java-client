@@ -1,0 +1,36 @@
+{
+  "player": {
+    "player_id": "50104",
+    "first_name": "John",
+    "last_name": "Sosoka",
+    "gender": "male",
+    "city": "Eagle",
+    "state": "ID",
+    "country_code": "US",
+    "country_name": "United States",
+    "initials": "JRS",
+    "age": 33,
+    "excluded_flag": "N",
+    "ifpa_registered": "Y"
+  },
+  "player_stats": {
+    "current_wppr_rank": "25233",
+    "last_month_rank": "0",
+    "last_year_rank": "0",
+    "highest_rank": "22050",
+    "highest_rank_date": "2017-04-01",
+    "current_wppr_value": "0.27",
+    "wppr_points_all_time": "0.39",
+    "best_finish": "10",
+    "best_finish_count": "1",
+    "average_finish": "19",
+    "average_finish_last_year": "0",
+    "total_events_all_time": "4",
+    "total_active_events": "1",
+    "total_events_away": "0",
+    "ratings_rank": "40254",
+    "ratings_value": "1094.54",
+    "efficiency_rank": "19621",
+    "efficiency_value": "3.410"
+  }
+}
