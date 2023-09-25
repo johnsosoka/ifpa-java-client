@@ -4,15 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 @Data
-public class Player {
-    @JsonProperty("player_id")
-    private String playerId;
-
-    @JsonProperty("first_name")
-    private String firstName;
-
-    @JsonProperty("last_name")
-    private String lastName;
+public class Player extends BasicPlayer {
 
     @JsonProperty("city")
     private String city;

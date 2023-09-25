@@ -1,35 +1,19 @@
 package com.johnsosoka.ifpa;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.johnsosoka.ifpa.core.BaseApiClient;
 import com.johnsosoka.ifpa.exception.IFPAException;
-import com.johnsosoka.ifpa.exception.IFPAWebException;
-import com.johnsosoka.ifpa.interceptor.ApiKeyInterceptor;
-import com.johnsosoka.ifpa.model.PlayerProfileResponse;
-import com.johnsosoka.ifpa.model.PlayerTournamentResponse;
+import com.johnsosoka.ifpa.model.*;
+import com.johnsosoka.ifpa.core.PlayerSearchTerms;
 
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
-
-import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import static com.johnsosoka.ifpa.constants.Constants.*;
 
-public class IFPAClient {
-
-    private static OkHttpClient client;
-    private static ObjectMapper objectMapper;
+public class IFPAClient extends BaseApiClient {
 
     public IFPAClient(String apiKey) {
-        client = new OkHttpClient.Builder()
-                .addInterceptor(new ApiKeyInterceptor(apiKey))
-                .build();
-        objectMapper = new ObjectMapper();
-    }
-
-    public PlayerTournamentResponse getPlayerTournaments(String playerId) throws IFPAException {
-        String url = BASE_API_URL + PLAYER + PATH_SEPARATOR + playerId + RESULTS;
-        return httpGET(url, PlayerTournamentResponse.class);
+        super(apiKey);
     }
 
     public PlayerProfileResponse getPlayerProfile(String playerId) throws IFPAException {
@@ -37,25 +21,44 @@ public class IFPAClient {
         return httpGET(url, PlayerProfileResponse.class);
     }
 
-    public <T> T httpGET(String url, Class<T> clazz) throws IFPAException {
-        Request request = new Request.Builder()
-                .url(url)
-                .build();
+    public PlayerHistoryResponse getPlayerHistory(String playerId) throws IFPAException {
+        String url = BASE_API_URL + PLAYER + PATH_SEPARATOR + playerId + HISTORY;
+        return httpGET(url, PlayerHistoryResponse.class);
+    }
 
-        T responseObj = null;
 
-        try (Response response = client.newCall(request).execute()) {
-            if (response.isSuccessful()) {
-                String responseBody = response.body().string();
-                responseObj = objectMapper.readValue(responseBody, clazz);
+    public PlayerSearchResponse playerSearch(PlayerSearchTerms playerSearchTerms) throws IFPAException {
+        String url = BASE_API_URL + PLAYER + SEARCH;
+        Map<String, String> params = new HashMap<>();
+
+        // Default to using the email if available
+        if (playerSearchTerms.getEmail() != null && !playerSearchTerms.getEmail().isEmpty()) {
+            params.put("email", playerSearchTerms.getEmail());
+        } else {
+            // Use the full name if email is not available
+            String fullName = playerSearchTerms.getFullName();
+            if (!fullName.isEmpty()) {
+                params.put("q", fullName);
             } else {
-                throw new IFPAWebException(response.code());
+                throw new IFPAException("No search terms provided");
             }
-        } catch (IOException e) {
-            throw new IFPAWebException(e);
         }
+        return httpGET(url, PlayerSearchResponse.class, null, params);
+    }
 
-        return responseObj;
+    public PlayerPvpResponse getPlayerPvp(String playerId) throws IFPAException {
+        String url = BASE_API_URL + PLAYER + PATH_SEPARATOR + playerId + PVP;
+        return httpGET(url, PlayerPvpResponse.class);
+    }
+
+    public CountryDirectorSearchResponse getCountryDirectors() throws IFPAException {
+        String url = BASE_API_URL + PLAYER + COUNTRY_DIRECTORS;
+        return httpGET(url, CountryDirectorSearchResponse.class);
+    }
+
+    public PlayerTournamentResponse getPlayerTournaments(String playerId) throws IFPAException {
+        String url = BASE_API_URL + PLAYER + PATH_SEPARATOR + playerId + RESULTS;
+        return httpGET(url, PlayerTournamentResponse.class);
     }
 
 }

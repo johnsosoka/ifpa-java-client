@@ -1,0 +1,13 @@
+{
+  "query": "john.sosoka@gmail.com",
+  "search": [{
+    "player_id": "50104",
+    "first_name": "John",
+    "last_name": "Sosoka",
+    "country_code": "US",
+    "country_name": "United States",
+    "city": "Eagle",
+    "state": "ID",
+    "wppr_rank": "25231"
+  }]
+}
