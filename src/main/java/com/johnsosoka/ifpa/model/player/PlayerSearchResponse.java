@@ -1,14 +1,15 @@
-package com.johnsosoka.ifpa.model;
+package com.johnsosoka.ifpa.model.player;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import java.util.List;
 
 @Data
-public class CountryDirectorSearchResponse {
+public class PlayerSearchResponse {
     @JsonProperty("query")
     private String query;
 
     @JsonProperty("search")
-    private List<CountryDirector> countryDirectors;
+    private List<PlayerSearchResult> searchResults;
 }
+

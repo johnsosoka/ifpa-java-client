@@ -1,4 +1,4 @@
-package com.johnsosoka.ifpa.model;
+package com.johnsosoka.ifpa.model.player;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;

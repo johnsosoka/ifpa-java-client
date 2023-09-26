@@ -1,7 +1,7 @@
 package com.johnsosoka.ifpa;
 
 import com.johnsosoka.ifpa.exception.IFPAException;
-import com.johnsosoka.ifpa.model.PlayerProfileResponse;
+import com.johnsosoka.ifpa.model.player.PlayerProfileResponse;
 import com.johnsosoka.ifpa.utils.IFPATestUtility;
 import okhttp3.*;
 import org.junit.jupiter.api.BeforeEach;

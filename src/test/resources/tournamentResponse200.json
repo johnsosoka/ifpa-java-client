@@ -1,0 +1,20 @@
+{
+  "tournament": {
+    "tournament_id": "65837",
+    "tournament_name": "Fellows Pingolf",
+    "tournament_type": "Tournament",
+    "prestige_flag": "N",
+    "periodic_flag": "N",
+    "city": "Boise",
+    "state": "ID",
+    "country_name": "United States",
+    "contact_name": "Sean Hunter",
+    "website": "https:\/\/www.facebook.com\/TreasureValleyPinball\/",
+    "events": [{
+      "event_date": "2023-09-15",
+      "winner_player_id": "76047",
+      "winner_first_name": "Chad",
+      "winner_last_name": "Herbert "
+    }]
+  }
+}
